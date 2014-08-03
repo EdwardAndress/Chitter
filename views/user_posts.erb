@@ -1,0 +1,24 @@
+<html>
+	<head>
+	</head>
+		<body>
+			<section id="new-post">
+				<form action="/:user/posts" method="post">
+					ChittThisOut: <input type="text" name="message">
+					Chittags: <input type="text" name="tags">
+					<input type="submit" value="Submit">
+				</form>
+
+				<form id="filter_tags" action="/:user/posts/filter" method="post">
+					Chitterati thoughts on: <input type="text" name="filter">
+				<input type="submit" value="Filter">
+				</form>
+			</section>
+
+			<ul id="post_list">
+				<% @posts.each do |post| %>
+				<li id="post"><%= post.message %></li>
+				<% end %>
+			</ul>
+		</body>
+</html>
