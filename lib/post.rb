@@ -6,5 +6,6 @@ class Post
 	property :message, Text
 
 	has n, :tags, through: Resource
+	has 1, :user, through: Resource
 
 end

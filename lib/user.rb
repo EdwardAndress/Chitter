@@ -9,15 +9,17 @@ class User
 	property :email, String, unique: true, message: "That email address is already associated with a member of the Chitterati"
 	property :password_digest, Text
 
-	attr_reader :password_digest
+	attr_reader :password
 	attr_accessor :password_confirmation
 
 	validates_confirmation_of :password, message: "Sorry your passwords do not match"
-	validates_confirmation_of :email
+	validates_uniqueness_of :email
+
+	has n, :posts, through: Resource
 
 	def password=(password)
 		@password = password
-		self.passwword_digest = BCrypt::Password.create(password)
+		self.password_digest = BCrypt::Password.create(password)
 	end
 
 	def self.authenticate(email, password)

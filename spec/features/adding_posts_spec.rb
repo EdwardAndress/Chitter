@@ -1,8 +1,10 @@
 require 'spec_helper'
 
-feature "Users can make posts" do 
+feature "Users can make posts" do
 
-	scenario "when logged in" do 
+	scenario "when logged in" do
+		User.create(:email => "test@test.com", :name => "Tester", :password => "testes", :password_confirmation => "testes")
+		sign_in(email: "test@test.com", password: "testes")
 		expect(Post.count).to eq(0)
 		visit '/:user/posts'
 		add_post(message: "Are you there?")

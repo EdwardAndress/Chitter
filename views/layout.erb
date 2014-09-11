@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+	<% if flash[:notice] || flash[:error] %>
+	<section id="flash">
+		<%= flash[:notice] %>
+		<%= flash[:error] %>
+	</section>
+	<% end %>
+	<% if current_user %>
+	Welcome, <%= current_user.name %>, Chitter away!
+	<form id="sign out" action="/" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Sign out">
+	</form>
+	<% end %>
+	<%= yield %>
+</body>
+</html>
